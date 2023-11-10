@@ -7,6 +7,7 @@ const errorMessage = ref('');
 const isError = ref('');
 const usesHttps = ref(false);
 const dataProcessed = ref(false);
+const cookies = ref('');
 
 function processURL() {
   resetValues();
@@ -15,7 +16,24 @@ function processURL() {
       const fccUrl = new URL(url.value);
       usesHttps.value = checkHttps(fccUrl); 
 
+
       dataProcessed.value = true;
+
+      fetch('http://localhost:5000/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url: fccUrl })
+      })
+      .then(res => res.json())
+      .then( (result) => {
+        cookies.value = result['cookies']
+        // console.log(result);
+      })
+      .catch( error => {
+        console.error("Error: ", error);
+      })
     } catch (err) {
       console.log(err)
       isError.value = true;
@@ -29,6 +47,7 @@ function checkHttps(fccUrl){
   if (fccUrl.protocol === "https:"){
     return true;
   }
+  return false;
 }
 
 function resetValues(){
@@ -50,6 +69,7 @@ function resetValues(){
     <div class="error-message" v-if="isError">{{ errorMessage }}</div>
     <div v-if="dataProcessed">
       Uses Https: {{ usesHttps }} <br>
+      Cookies: {{ cookies }} <br>
     </div>
   </div>
 </template>
