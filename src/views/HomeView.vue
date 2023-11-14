@@ -19,7 +19,7 @@ function processURL() {
 
       dataProcessed.value = true;
 
-      fetch('http://localhost:5000/api', {
+      fetch('http://127.0.0.1:5000/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
