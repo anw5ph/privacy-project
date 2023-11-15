@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 import time
-import pandas as pd
+import pandas as pda
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
