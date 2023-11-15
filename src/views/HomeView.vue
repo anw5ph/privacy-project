@@ -96,6 +96,9 @@ function resetValues() {
           <searchSVG />
         </button>
       </div>
+      <RouterLink to="rankings">
+        <button type="button" class="btn btn-primary" id="ranking-button">Rankings</button>
+      </RouterLink>
     </div>
     <div class="error-message" v-if="isError">{{ errorMessage }}</div>
     <div v-if="isLoading" class="loading-screen">
@@ -150,6 +153,9 @@ function resetValues() {
 </template>
 
 <style>
+#ranking-button{
+  margin-bottom: 10px;
+}
 .top-row{
   display: flex;
   flex-direction: row;

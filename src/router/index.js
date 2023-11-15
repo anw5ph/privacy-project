@@ -11,9 +11,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/rankings',
+      name: 'rankings',
+      component: RankingView
     }
   ]
 })
