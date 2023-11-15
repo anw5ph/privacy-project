@@ -95,9 +95,14 @@ function resetValues() {
       <loadingSVG />
     </div>
     <div v-if="dataProcessed" class="data">
+      <div>
+        <b>URL:</b> {{ url }}
+        <b>Total Cookies: </b> 0
+      </div>
       <table class="table table-striped">
         <thead>
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Cookie Name</th>
             <th scope="col">Domain</th>
             <th scope="col">Path</th>
@@ -106,7 +111,8 @@ function resetValues() {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="cookie in cookies" :key="cookie">
+          <tr v-for="(cookie,index) in cookies" :key="cookie">
+            <th scope="row">{{ parseInt(index) + 1  }}</th>
             <td>{{ cookie['name'] }}</td>
             <td>{{ cookie['domain'] }}</td>
             <td>{{ cookie['path'] }}</td>
@@ -131,6 +137,7 @@ function resetValues() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 .title{
   margin-bottom: 20px;
