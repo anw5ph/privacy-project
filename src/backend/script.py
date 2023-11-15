@@ -17,13 +17,13 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api', methods=['POST'])
+@app.route('/api/firstParty', methods=['POST'])
 def get_cookies():
     data = request.get_json()
     url = data.get('url')
 
     options = Options()
-    options.headless = False
+    options.headless = True
     options.add_argument("--window-size=1920, 1200")
     options.add_argument("start-maximized")
     # options.add_argument("--auto-open-devtools-for-tabs")
@@ -32,19 +32,19 @@ def get_cookies():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     
     driver.get(url)
-    time.sleep(20)
+    time.sleep(30)
 
     i = 0
-    cookie_json = {}
-    main_frame_cookies = driver.get_cookies()
-    print(len(main_frame_cookies))
-    for cookie in main_frame_cookies:
-        cookie_json[i] = cookie
+    first_party_cookie_json = {}
+    first_party_cookies = driver.get_cookies()
+    print(len(first_party_cookies))
+    for cookie in first_party_cookies:
+        first_party_cookie_json[i] = cookie
         i += 1
 
     driver.close()
 
-    return {"result": "Analysis Completed!", "cookies": cookie_json}
+    return {"result": "Analysis Completed!", "first_party_cookies": first_party_cookie_json, "first_party_cookies_length": len(first_party_cookies)}
 
 if __name__ == '__main__':
     app.run(debug = True)
