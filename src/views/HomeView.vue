@@ -16,7 +16,6 @@ function processURL() {
       const fccUrl = new URL(url.value);
       usesHttps.value = checkHttps(fccUrl); 
 
-
       dataProcessed.value = true;
 
       fetch('http://127.0.0.1:5000/api', {
