@@ -92,7 +92,7 @@ function resetValues() {
       <h1 class="title">URL Privacy Score Generator</h1>
       <div class="input-div">
         <input type="text" id="search" class="form-control" v-model="url" placeholder="Enter your URL here" @keyup.enter="processURL">
-        &nbsp;<button type="button" class="btn btn-primary" @click="processURL">
+        &nbsp;<button type="button" class="btn btn-primary" @click="processURL" :disabled="isLoading">
           <searchSVG />
         </button>
       </div>
@@ -103,11 +103,19 @@ function resetValues() {
       <loadingSVG />
     </div>
     <div v-if="dataProcessed" class="data">
-      <div>
-        <b>URL:</b> {{ url }}
-        <b>&nbsp; Total Cookies: </b> {{ firstPartyCookiesLength + thirdPartyCookiesLength}}
+      <div class="top-row">
+        <div class="box">
+          <div class="info">
+            <b>Total Cookies: </b> {{ firstPartyCookiesLength + thirdPartyCookiesLength}} <br>
+            <b>Uses Https: </b> {{ usesHttps }}
+          </div>
+        <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
       </div>
-      <table class="table table-striped">
+      <div class="box2">
+
+      </div>
+      </div>
+      <table class="table table-striped" id="tableCSS">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -137,12 +145,37 @@ function resetValues() {
           </tr>
         </tbody>
       </table>
-      <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
     </div>
   </div>
 </template>
 
 <style>
+.top-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.info{
+  margin-left: 10px;
+}
+#tableCSS{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+.box2{
+  width: 49%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+.box{
+  width: 49%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
 #search{
   width: 400px;
 }
@@ -153,6 +186,8 @@ function resetValues() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
   margin-bottom: 10px;
 }
 .title{
