@@ -1,8 +1,6 @@
-# test
+# Privacy Project Portal
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
+## Recommended IDE Setup For Front-End Vue
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
@@ -22,14 +20,23 @@ npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Recommended Setup For Back-End
+Navigate to /src/backend directory
+## Project Setup
 
 ```sh
-npm run build
+npm install
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Compile for Development
+Open two seperate terminals, one will be for each back-end API
 
+In the first terminal:
 ```sh
-npm run lint
+node getCookies.js
+```
+
+In the second terminal
+```sh
+node storeCookies.js
 ```
