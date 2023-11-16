@@ -1,1 +1,122 @@
-{}
+{
+  "0": {
+    "url": "https://www.google.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "1": {
+    "url": "https://www.youtube.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "3": {
+    "url": "https://www.facebook.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "4": {
+    "url": "https://www.instagram.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "5": {
+    "url": "https://www.twitter.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "6": {
+    "url": "https://www.baidu.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "7": {
+    "url": "https://www.wikipedia.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "8": {
+    "url": "https://www.yahoo.com",
+    "httpsScore": 1,
+    "cookieScore": 0.62,
+    "overallScore": 1.62
+  },
+  "9": {
+    "url": "https://www.yandex.ru",
+    "httpsScore": 1,
+    "cookieScore": 0.5599,
+    "overallScore": 1.56
+  },
+  "10": {
+    "url": "https://www.whatsapp.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "11": {
+    "url": "https://www.xvideos.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "12": {
+    "url": "https://www.amazon.com",
+    "httpsScore": 1,
+    "cookieScore": 0.27,
+    "overallScore": 1.27
+  },
+  "13": {
+    "url": "https://www.tiktok.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "14": {
+    "url": "https://www.pornhub.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "15": {
+    "url": "https://www.xnxx.com",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "16": {
+    "url": "https://www.live.com",
+    "httpsScore": 1,
+    "cookieScore": 0.21,
+    "overallScore": 1.21
+  },
+  "17": {
+    "url": "https://www.yahoo.co.jp",
+    "httpsScore": 1,
+    "cookieScore": 0.9299,
+    "overallScore": 1.93
+  },
+  "18": {
+    "url": "https://www.reddit.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "19": {
+    "url": "https://www.docomo.ne.jp",
+    "httpsScore": 1,
+    "cookieScore": 0.94,
+    "overallScore": 1.94
+  },
+  "20": {
+    "url": "https://www.linkedin.com",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  }
+}

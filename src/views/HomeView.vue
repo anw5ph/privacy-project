@@ -1,9 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import searchSVG from '../assets/icons/search.svg';
 import loadingSVG from '../assets/icons/loading.svg';
 import Plotly from 'plotly.js-dist'
-
 
 const url = ref('');
 const errorMessage = ref('');
@@ -19,8 +18,6 @@ const cookiesScore = ref(0);
 const httpScore = ref(0);
 const totalScore = ref(0);
 const safety = ref('');
-
-import { computed } from 'vue';
 
 const safetyClass = computed(() => {
   if (safety.value === "Your site has a low privacy score") return 'red-text';
@@ -53,8 +50,11 @@ async function processURL() {
           thirdPartyCookiesLength.value = result['thirdPartyCookiesLength'];
 
           calculateAverageScore(firstPartyCookiesLength.value, thirdPartyCookiesLength.value);
+          console.log("Cookie Value: " + cookiesScore.value)
+          console.log("HTTP Value: " + httpScore.value)
+          console.log("Total Value: " + totalScore.value)
           processCookies();
-          appendValues();
+
           dataProcessed.value = true;
         })
         .catch(error => {
@@ -70,10 +70,6 @@ async function processURL() {
       isLoading.value = false; // Stop loading
     }
   }
-}
-
-function appendValues(){
-
 }
 
 function getCookieScore(cookies) {
@@ -130,7 +126,10 @@ function processCookies() {
     // width: 500
   };
 
-  var data2 = [
+  var data2;
+
+  if (totalScore.value <= 0.5) {
+    data2 = [
     {
       domain: { x: [0, 1], y: [0, 1] },
       value: totalScore.value,
@@ -139,15 +138,96 @@ function processCookies() {
       mode: "gauge+number",
       gauge: {
         axis: { range: [null, 2] },
-        bar: { color: "blue" },
+        bar: { 
+          color: "red",
+          thickness: 1,
+        },
         steps: [
-          { range: [0, 2/3], color: "red" },
-          { range: [2/3, 4/3], color: "yellow" },
-          { range: [4/3, 2], color: "green" }
+          // { range: [0, 1/2], color: "red" },
+          // { range: [1/2, 1], color: "orange" },
+          // { range: [1, 3/2], color: "yellow" },
+          // { range: [3/2, 2], color: "green" }
+          {range: [0, 2], color: "lightgrey"}
         ],
       }
     }
-  ];
+    ];
+  }
+  else if (totalScore.value > 0.5 && totalScore.value <= 1.0) {
+    data2 = [
+    {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: totalScore.value,
+      title: { text: "Privacy Score" },
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+        axis: { range: [null, 2] },
+        bar: { 
+          color: "orange",
+          thickness: 1,
+        },
+        steps: [
+          // { range: [0, 1/2], color: "red" },
+          // { range: [1/2, 1], color: "orange" },
+          // { range: [1, 3/2], color: "yellow" },
+          // { range: [3/2, 2], color: "green" }
+          {range: [0, 2], color: "lightgrey"}
+        ],
+      }
+    }
+    ];
+  }
+  else if (totalScore.value > 1.0 && totalScore.value <= 1.5) {
+    data2 = [
+    {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: totalScore.value,
+      title: { text: "Privacy Score" },
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+        axis: { range: [null, 2] },
+        bar: { 
+          color: "yellow",
+          thickness: 1,
+        },
+        steps: [
+          // { range: [0, 1/2], color: "red" },
+          // { range: [1/2, 1], color: "orange" },
+          // { range: [1, 3/2], color: "yellow" },
+          // { range: [3/2, 2], color: "green" }
+          {range: [0, 2], color: "lightgrey"}
+        ],
+      }
+    }
+    ];
+  }
+  else if (totalScore.value > 1.5 && totalScore.value <= 2.0) {
+    data2 = [
+    {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: totalScore.value,
+      title: { text: "Privacy Score" },
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+        axis: { range: [null, 2] },
+        bar: { 
+          color: "green",
+          thickness: 1,
+        },
+        steps: [
+          // { range: [0, 1/2], color: "red" },
+          // { range: [1/2, 1], color: "orange" },
+          // { range: [1, 3/2], color: "yellow" },
+          // { range: [3/2, 2], color: "green" }
+          {range: [0, 2], color: "lightgrey"}
+        ],
+      }
+    }
+    ];
+  }
 
   var layout2 = { margin: { t: 0, b: 0 } };
   var config2 = {responsive: true}
