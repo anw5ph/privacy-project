@@ -4,6 +4,7 @@ import searchSVG from '../assets/icons/search.svg';
 import loadingSVG from '../assets/icons/loading.svg';
 import Plotly from 'plotly.js-dist'
 
+
 const url = ref('');
 const errorMessage = ref('');
 const isError = ref(false);
@@ -14,6 +15,20 @@ const firstPartyCookies = ref([]);
 const firstPartyCookiesLength = ref(0);
 const thirdPartyCookies = ref([]);
 const thirdPartyCookiesLength = ref(0);
+const cookiesScore = ref(0);
+const httpScore = ref(0);
+const totalScore = ref(0);
+const safety = ref('');
+
+import { computed } from 'vue';
+
+const safetyClass = computed(() => {
+  if (safety.value === "Your site has a low privacy score") return 'red-text';
+  else if (safety.value === "Your site has a moderate privacy score") return 'yellow-text';
+  else if (safety.value === "Your site has a high privacy score") return 'green-text';
+  return ''; // default class if none of the conditions are met
+});
+
 
 async function processURL() {
   resetValues();
@@ -37,7 +52,9 @@ async function processURL() {
           firstPartyCookiesLength.value = result['firstPartyCookiesLength'];
           thirdPartyCookiesLength.value = result['thirdPartyCookiesLength'];
 
+          calculateAverageScore(firstPartyCookiesLength.value, thirdPartyCookiesLength.value);
           processCookies();
+          appendValues();
           dataProcessed.value = true;
         })
         .catch(error => {
@@ -55,6 +72,50 @@ async function processURL() {
   }
 }
 
+function appendValues(){
+
+}
+
+function getCookieScore(cookies) {
+    if (cookies >= 50) return 0;
+    if (cookies >= 46) return 1;
+    if (cookies >= 41) return 2;
+    if (cookies >= 36) return 3;
+    if (cookies >= 31) return 4;
+    if (cookies >= 26) return 5;
+    if (cookies >= 21) return 6;
+    if (cookies >= 16) return 7;
+    if (cookies >= 11) return 8;
+    if (cookies >= 6) return 9;
+    if (cookies <= 5) return 10;
+}
+
+function calculateAverageScore(firstPartyCookies, thirdPartyCookies) {
+    const firstPartyScore = getCookieScore(firstPartyCookies);
+    const thirdPartyScore = getCookieScore(thirdPartyCookies);
+
+    const weightedAverage = (firstPartyScore/10 * 0.3) + (thirdPartyScore/10 * 0.7);
+    cookiesScore.value = weightedAverage;
+
+    if(usesHttps.value){
+      httpScore.value = 1;
+    }
+    else{
+      httpScore.value = 0;
+    }
+
+    totalScore.value = httpScore.value + cookiesScore.value;
+    if(totalScore.value >= 0 && totalScore.value < 2/3){
+      safety.value = "Your site has a low privacy score";
+    }
+    else if(totalScore.value >= 2/3 && totalScore.value < 4/3){
+      safety.value = "Your site has a moderate privacy score";
+    }
+    else{
+      safety.value = "Your site has a high privacy score";
+    }
+}
+
 function processCookies() {
   var data = [{
     values: [(firstPartyCookiesLength.value) / (firstPartyCookiesLength.value + thirdPartyCookiesLength.value), (thirdPartyCookiesLength.value) / (firstPartyCookiesLength.value + thirdPartyCookiesLength.value)],
@@ -62,13 +123,38 @@ function processCookies() {
     type: 'pie'
   }];
 
+  var config = {responsive: true}
+
   var layout = {
-    height: 400,
-    width: 500
+    // height: 400,
+    // width: 500
   };
 
+  var data2 = [
+    {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: totalScore.value,
+      title: { text: "Privacy Score" },
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+        axis: { range: [null, 2] },
+        bar: { color: "blue" },
+        steps: [
+          { range: [0, 2/3], color: "red" },
+          { range: [2/3, 4/3], color: "yellow" },
+          { range: [4/3, 2], color: "green" }
+        ],
+      }
+    }
+  ];
+
+  var layout2 = { margin: { t: 0, b: 0 } };
+  var config2 = {responsive: true}
+
   setTimeout(() => {
-    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', data, layout, config);
+    Plotly.newPlot('myDiv2', data2, layout2, config2);
   }, 100); // Delay of 100 milliseconds
 }
 
@@ -90,9 +176,14 @@ function resetValues() {
   <div class="container">
     <div class="header">
       <h1 class="title">URL Privacy Score Generator</h1>
+      <button type="button" :disabled="isLoading" class="btn btn-primary" id="ranking-button">
+          <RouterLink class="link" to="rankings">
+            Rankings
+          </RouterLink>
+        </button>
       <div class="input-div">
         <input type="text" id="search" class="form-control" v-model="url" placeholder="Enter your URL here" @keyup.enter="processURL">
-        &nbsp;<button type="button" class="btn btn-primary" @click="processURL">
+        &nbsp;<button type="button" class="btn btn-primary" @click="processURL" :disabled="isLoading">
           <searchSVG />
         </button>
       </div>
@@ -103,11 +194,22 @@ function resetValues() {
       <loadingSVG />
     </div>
     <div v-if="dataProcessed" class="data">
-      <div>
-        <b>URL:</b> {{ url }}
-        <b>&nbsp; Total Cookies: </b> {{ firstPartyCookiesLength + thirdPartyCookiesLength}}
+      <div class="top-row">
+        <div class="box">
+          <div class="info">
+            <b>Total Cookies: </b> {{ firstPartyCookiesLength + thirdPartyCookiesLength}} <br>
+            <b>Uses Https: </b> {{ usesHttps }}
+          </div>
+        <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
       </div>
-      <table class="table table-striped">
+      <div class="box2">
+        <div class="score-info">
+          <h3 class="score-info-text" :class="safetyClass">{{ safety }}</h3>
+        </div>
+        <div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+      </div>
+      </div>
+      <table class="table table-striped" id="tableCSS">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -137,12 +239,59 @@ function resetValues() {
           </tr>
         </tbody>
       </table>
-      <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
     </div>
   </div>
 </template>
 
 <style>
+.red-text { color: red; }
+.yellow-text { color: #FDDA0D; }
+.green-text { color: green; }
+
+.score-info-text{
+  font-size: 15px;
+}
+.score-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+.link{
+  color: white;
+  text-decoration: none;
+}
+#ranking-button{
+  margin-bottom: 10px;
+}
+.top-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.info{
+  margin-left: 10px;
+}
+#tableCSS{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+.box2{
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+.box{
+  width: 49%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
 #search{
   width: 400px;
 }
@@ -153,10 +302,11 @@ function resetValues() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
   margin-bottom: 10px;
 }
 .title{
-  margin-bottom: 20px;
   margin-top: 20px;
 }
 .data {
