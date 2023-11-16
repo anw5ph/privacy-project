@@ -1,6 +1,5 @@
 // 80 remaining sites from top 100 sites in the world
-const top100Websites = ['openai.com', 'office.com', 
-    'xhamster.com', 'netflix.com', 'dzen.ru', 'microsoftonline.com', 'bing.com', 'bilibili.com', 'mail.ru', 'samsung.com', 
+const top100Websites = ['microsoftonline.com', 'bing.com', 'bilibili.com', 'mail.ru', 'samsung.com', 
     'vk.com', 'naver.com', 'pinterest.com', 'microsoft.com', 'discord.com', 'weather.com', 'max.com', 'twitch.tv', 
     'turbopages.org', 'zoom.us', 'duckduckgo.com', 'qq.com', 'xhamster.desi', 'quora.com', 'sharepoint.com', 'globo.com', 
     'cricbuzz.com', 'stripchat.com', 't.me', 'fandom.com', 'en.wikipedia.org', 'imdb.com', 'play.google.com', 'es.wikipedia.org', 

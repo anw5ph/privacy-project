@@ -142,11 +142,5 @@
     "httpsScore": 1,
     "cookieScore": 1,
     "overallScore": 2
-  },
-  "25": {
-    "url": "https://www.dzen.ru/",
-    "httpsScore": 1,
-    "cookieScore": 0.63,
-    "overallScore": 1.63
   }
 }

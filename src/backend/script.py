@@ -1,3 +1,4 @@
+# DO NOT RUN THIS FILE IT IS NOT USED ANYMORE IN THE PROJECT
 import pandas as pd
 import requests
 from selenium import webdriver

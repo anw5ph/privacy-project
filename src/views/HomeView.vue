@@ -50,11 +50,22 @@ async function processURL() {
           thirdPartyCookiesLength.value = result['thirdPartyCookiesLength'];
 
           calculateAverageScore(firstPartyCookiesLength.value, thirdPartyCookiesLength.value);
-          console.log("Cookie Value: " + cookiesScore.value)
-          console.log("HTTP Value: " + httpScore.value)
-          console.log("Total Value: " + totalScore.value)
           processCookies();
+        })
+        .catch(error => {
+          console.error("Error: ", error);
+        })
 
+      await fetch('http://127.0.0.1:3002/api/storeCookies', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ requestedUrl: fccUrl , cookiesScore: cookiesScore.value, httpScore: httpScore.value, totalScore: totalScore.value})
+      })
+      .then(res => res.json())
+        .then((result) => {
+          console.log(result['message']);
           dataProcessed.value = true;
         })
         .catch(error => {
