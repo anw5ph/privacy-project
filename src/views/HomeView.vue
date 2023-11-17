@@ -35,53 +35,53 @@ async function processURL() {
       const fccUrl = new URL(url.value);
       usesHttps.value = checkHttps(fccUrl);
 
-      await fetch('http://127.0.0.1:3001/api/getCookies', {
+      // Fetch for getting cookies
+      const getCookiesResponse = await fetch('http://127.0.0.1:3001/api/getCookies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ requestedUrl: fccUrl })
-      })
-        .then(res => res.json())
-        .then((result) => {
-          firstPartyCookies.value = result['firstPartyCookies'];
-          thirdPartyCookies.value = result['thirdPartyCookies'];
-          firstPartyCookiesLength.value = result['firstPartyCookiesLength'];
-          thirdPartyCookiesLength.value = result['thirdPartyCookiesLength'];
+      });
 
-          calculateAverageScore(firstPartyCookiesLength.value, thirdPartyCookiesLength.value);
-          processCookies();
-        })
-        .catch(error => {
-          console.error("Error: ", error);
-        })
+      const cookieData = await getCookiesResponse.json();
+      firstPartyCookies.value = cookieData['firstPartyCookies'];
+      thirdPartyCookies.value = cookieData['thirdPartyCookies'];
+      firstPartyCookiesLength.value = cookieData['firstPartyCookiesLength'];
+      thirdPartyCookiesLength.value = cookieData['thirdPartyCookiesLength'];
 
-      await fetch('http://127.0.0.1:3002/api/storeCookies', {
+      calculateAverageScore(firstPartyCookiesLength.value, thirdPartyCookiesLength.value);
+      processCookies();
+
+      // Fetch for storing cookies
+      const storeCookiesResponse = await fetch('http://127.0.0.1:3001/api/storeCookies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ requestedUrl: fccUrl , cookiesScore: cookiesScore.value, httpScore: httpScore.value, totalScore: totalScore.value})
-      })
-      .then(res => res.json())
-        .then((result) => {
-          console.log(result['message']);
-          dataProcessed.value = true;
+        body: JSON.stringify({ 
+          requestedUrl: fccUrl, 
+          cookiesScore: cookiesScore.value, 
+          httpScore: httpScore.value, 
+          totalScore: totalScore.value
         })
-        .catch(error => {
-          console.error("Error: ", error);
-        })
-        
+      });
+
+      const storeResponse = await storeCookiesResponse.json();
+      console.log(storeResponse['message']);
+      dataProcessed.value = true;
+
     } catch (err) {
       console.error(err);
       isError.value = true;
       errorMessage.value = "Invalid URL!";
-      isLoading.value = false; // Stop loading
     } finally {
       isLoading.value = false; // Stop loading
     }
   }
 }
+
+
 
 function getCookieScore(cookies) {
     if (cookies >= 50) return 0;
@@ -139,7 +139,7 @@ function processCookies() {
 
   var data2;
 
-  if (totalScore.value <= 0.5) {
+  if (totalScore.value >= 0 && totalScore.value < 2/3) {
     data2 = [
     {
       domain: { x: [0, 1], y: [0, 1] },
@@ -164,32 +164,7 @@ function processCookies() {
     }
     ];
   }
-  else if (totalScore.value > 0.5 && totalScore.value <= 1.0) {
-    data2 = [
-    {
-      domain: { x: [0, 1], y: [0, 1] },
-      value: totalScore.value,
-      title: { text: "Privacy Score" },
-      type: "indicator",
-      mode: "gauge+number",
-      gauge: {
-        axis: { range: [null, 2] },
-        bar: { 
-          color: "orange",
-          thickness: 1,
-        },
-        steps: [
-          // { range: [0, 1/2], color: "red" },
-          // { range: [1/2, 1], color: "orange" },
-          // { range: [1, 3/2], color: "yellow" },
-          // { range: [3/2, 2], color: "green" }
-          {range: [0, 2], color: "lightgrey"}
-        ],
-      }
-    }
-    ];
-  }
-  else if (totalScore.value > 1.0 && totalScore.value <= 1.5) {
+  else if (totalScore.value >= 2/3 && totalScore.value < 4/3) {
     data2 = [
     {
       domain: { x: [0, 1], y: [0, 1] },
@@ -214,7 +189,7 @@ function processCookies() {
     }
     ];
   }
-  else if (totalScore.value > 1.5 && totalScore.value <= 2.0) {
+  else {
     data2 = [
     {
       domain: { x: [0, 1], y: [0, 1] },
@@ -260,6 +235,9 @@ function resetValues() {
   isError.value = false;
   dataProcessed.value = false;
   usesHttps.value = false;
+  totalScore.value = 0;
+  cookiesScore.value = 0;
+  httpScore.value = 0;
 }
 </script>
 
@@ -267,11 +245,11 @@ function resetValues() {
   <div class="container">
     <div class="header">
       <h1 class="title">URL Privacy Score Generator</h1>
-      <button type="button" :disabled="isLoading" class="btn btn-primary" id="ranking-button">
-          <RouterLink class="link" to="rankings">
-            Rankings
-          </RouterLink>
+      <RouterLink class="link" to="rankings" :class="{ disabled: isLoading}" >
+        <button type="button" :disabled="isLoading" class="btn btn-primary" id="ranking-button">
+          Rankings
         </button>
+      </RouterLink>
       <div class="input-div">
         <input type="text" id="search" class="form-control" v-model="url" placeholder="Enter your URL here" @keyup.enter="processURL">
         &nbsp;<button type="button" class="btn btn-primary" @click="processURL" :disabled="isLoading">
@@ -335,6 +313,10 @@ function resetValues() {
 </template>
 
 <style>
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .red-text { color: red; }
 .yellow-text { color: #FDDA0D; }
 .green-text { color: green; }
@@ -348,10 +330,10 @@ function resetValues() {
   align-items: center;
   margin-top: 10px;
 }
-.link{
+/* .link{
   color: white;
   text-decoration: none;
-}
+} */
 #ranking-button{
   margin-bottom: 10px;
 }

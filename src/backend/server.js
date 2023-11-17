@@ -1,0 +1,99 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const fs = require('fs')
+const puppeteer = require('puppeteer')
+
+const app = express()
+const port = 3001 // Choose one port for both functionalities
+
+app.use(cors())
+app.use(bodyParser.json())
+
+// Define the delay function
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time))
+}
+
+// Endpoint to handle the POST request for getting cookies
+app.post('/api/getCookies', async (req, res) => {
+  console.log("This is running")
+  // Access the requestedUrl from the request body
+  const requestedUrl = req.body.requestedUrl
+  let firstPartyCookies = {}
+  let thirdPartyCookies = {}
+
+  // Do something with the requestedUrl, for example, log it
+  console.log('Requested URL:', requestedUrl)
+  try {
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    await page.goto(requestedUrl, { waitUntil: 'domcontentloaded' })
+
+    await delay(20000)
+
+    // Access and log cookies
+    const client = await page.target().createCDPSession()
+    const all_browser_cookies = (await client.send('Network.getAllCookies')).cookies
+    const first_party_cookies = await page.cookies()
+    var i = 0
+    firstPartyCookies = first_party_cookies.reduce((acc, cookie) => {
+      acc[i] = cookie
+      i += 1
+      return acc
+    }, {})
+
+    const firstPartyDomains = first_party_cookies.map((cookie) => cookie.domain)
+    thirdPartyCookies = all_browser_cookies.reduce((acc, cookie) => {
+      if (!firstPartyDomains.includes(cookie.domain)) {
+        acc[i] = cookie
+        i += 1
+      }
+      return acc
+    }, {})
+
+    await browser.close()
+  } catch (error) {
+    console.log(error)
+  }
+  res.json({
+    firstPartyCookies,
+    thirdPartyCookies,
+    firstPartyCookiesLength: Object.keys(firstPartyCookies).length,
+    thirdPartyCookiesLength: Object.keys(thirdPartyCookies).length
+  })
+})
+
+// Endpoint for storing cookies
+app.post('/api/storeCookies', async (req, res) => {
+  // Create a backup of the data.json file before modifying
+  fs.copyFileSync('data.json', 'backup.json')
+
+  const requestedUrl = req.body.requestedUrl
+  const cookiesScore = req.body.cookiesScore
+  const httpScore = req.body.httpScore
+  const totalScore = req.body.totalScore
+
+  const rawData = fs.readFileSync('data.json')
+  const jsonData = JSON.parse(rawData)
+
+  const newData = {
+    url: requestedUrl,
+    httpsScore: httpScore,
+    cookieScore: cookiesScore,
+    overallScore: totalScore
+  }
+
+  const lastIndex =
+    Object.keys(jsonData).length > 0 ? Math.max(...Object.keys(jsonData).map(Number)) : -1
+  jsonData[lastIndex + 1] = newData
+
+  fs.writeFileSync('data.json', JSON.stringify(jsonData, null, 2), 'utf-8')
+  console.log('Succesfully stored cookie scoring data for ' + requestedUrl + '.')
+  res.json({ message: 'Succesfully stored cookie scoring data for ' + requestedUrl + '.' })
+})
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://127.0.0.1:${port}`)
+})
