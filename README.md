@@ -31,14 +31,8 @@ npm install
 ```
 
 ### Compile for Development
-Open two seperate terminals, one will be for each back-end API
-
-In the first terminal:
+Run backend server
 ```sh
-node getCookies.js
+node server.js
 ```
-
-In the second terminal
-```sh
-node storeCookies.js
 ```

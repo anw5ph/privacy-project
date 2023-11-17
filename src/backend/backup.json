@@ -154,5 +154,11 @@
     "httpsScore": 1,
     "cookieScore": 0.7,
     "overallScore": 1.7
+  },
+  "27": {
+    "url": "https://www.bilibili.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.94,
+    "overallScore": 1.94
   }
 }

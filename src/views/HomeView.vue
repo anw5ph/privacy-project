@@ -312,7 +312,7 @@ function resetValues() {
   </div>
 </template>
 
-<style>
+<style scoped>
 .disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -330,10 +330,7 @@ function resetValues() {
   align-items: center;
   margin-top: 10px;
 }
-/* .link{
-  color: white;
-  text-decoration: none;
-} */
+
 #ranking-button{
   margin-bottom: 10px;
 }

@@ -160,5 +160,11 @@
     "httpsScore": 1,
     "cookieScore": 0.94,
     "overallScore": 1.94
+  },
+  "28": {
+    "url": "https://mail.ru/",
+    "httpsScore": 1,
+    "cookieScore": 0.6699999999999999,
+    "overallScore": 1.67
   }
 }
