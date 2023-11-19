@@ -81,8 +81,6 @@ async function processURL() {
   }
 }
 
-
-
 function getCookieScore(cookies) {
     if (cookies >= 50) return 0;
     if (cookies >= 46) return 1;

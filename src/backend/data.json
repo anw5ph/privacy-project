@@ -166,5 +166,83 @@
     "httpsScore": 1,
     "cookieScore": 0.6699999999999999,
     "overallScore": 1.67
+  },
+  "29": {
+    "url": "https://www.samsung.com/us/",
+    "httpsScore": 1,
+    "cookieScore": 0.37,
+    "overallScore": 1.37
+  },
+  "30": {
+    "url": "https://vk.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.8799999999999999,
+    "overallScore": 1.88
+  },
+  "31": {
+    "url": "https://www.naver.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "32": {
+    "url": "https://www.pinterest.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "33": {
+    "url": "https://microsoft.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.15,
+    "overallScore": 1.15
+  },
+  "34": {
+    "url": "https://discord.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "35": {
+    "url": "https://weather.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.18,
+    "overallScore": 1.18
+  },
+  "36": {
+    "url": "https://www.max.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.27999999999999997,
+    "overallScore": 1.28
+  },
+  "37": {
+    "url": "https://www.twitch.tv/",
+    "httpsScore": 1,
+    "cookieScore": 0.9,
+    "overallScore": 1.9
+  },
+  "38": {
+    "url": "https://turbopages.org/",
+    "httpsScore": 1,
+    "cookieScore": 0.9299999999999999,
+    "overallScore": 1.93
+  },
+  "39": {
+    "url": "https://zoom.us/",
+    "httpsScore": 1,
+    "cookieScore": 0.19999999999999998,
+    "overallScore": 1.2
+  },
+  "40": {
+    "url": "https://duckduckgo.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "41": {
+    "url": "https://www.quora.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
   }
 }
