@@ -152,10 +152,6 @@ function processCookies() {
           thickness: 1,
         },
         steps: [
-          // { range: [0, 1/2], color: "red" },
-          // { range: [1/2, 1], color: "orange" },
-          // { range: [1, 3/2], color: "yellow" },
-          // { range: [3/2, 2], color: "green" }
           {range: [0, 2], color: "lightgrey"}
         ],
       }
@@ -177,10 +173,6 @@ function processCookies() {
           thickness: 1,
         },
         steps: [
-          // { range: [0, 1/2], color: "red" },
-          // { range: [1/2, 1], color: "orange" },
-          // { range: [1, 3/2], color: "yellow" },
-          // { range: [3/2, 2], color: "green" }
           {range: [0, 2], color: "lightgrey"}
         ],
       }
@@ -202,10 +194,6 @@ function processCookies() {
           thickness: 1,
         },
         steps: [
-          // { range: [0, 1/2], color: "red" },
-          // { range: [1/2, 1], color: "orange" },
-          // { range: [1, 3/2], color: "yellow" },
-          // { range: [3/2, 2], color: "green" }
           {range: [0, 2], color: "lightgrey"}
         ],
       }

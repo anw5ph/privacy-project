@@ -238,5 +238,239 @@
     "httpsScore": 1,
     "cookieScore": 1,
     "overallScore": 2
+  },
+  "41": {
+    "url": "https://www.quora.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "42": {
+    "url": "https://www.sharepoint.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.18,
+    "overallScore": 1.18
+  },
+  "43": {
+    "url": "https://www.globo.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.54,
+    "overallScore": 1.54
+  },
+  "44": {
+    "url": "https://cricbuzz.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.73,
+    "overallScore": 1.73
+  },
+  "45": {
+    "url": "https://www.t.me/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "46": {
+    "url": "https://www.fandom.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.39999999999999997,
+    "overallScore": 1.4
+  },
+  "47": {
+    "url": "https://www.en.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "48": {
+    "url": "https://en.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "49": {
+    "url": "https://www.imdb.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "50": {
+    "url": "https://play.google.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "51": {
+    "url": "http://www.neverssl.com/",
+    "httpsScore": 0,
+    "cookieScore": 1,
+    "overallScore": 1
+  },
+  "52": {
+    "url": "https://es.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "53": {
+    "url": "https://www.apple.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "54": {
+    "url": "https://de.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "55": {
+    "url": "https://www.nytimes.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.21,
+    "overallScore": 1.21
+  },
+  "56": {
+    "url": "https://fr.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "57": {
+    "url": "https://ja.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "58": {
+    "url": "https://www.uol.com.br/",
+    "httpsScore": 1,
+    "cookieScore": 0.09,
+    "overallScore": 1.09
+  },
+  "59": {
+    "url": "https://translate.google.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "60": {
+    "url": "https://www.spboss.blog/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "61": {
+    "url": "https://www.satta-king-fixed-no.in/",
+    "httpsScore": 1,
+    "cookieScore": 0.76,
+    "overallScore": 1.76
+  },
+  "62": {
+    "url": "https://www.mayoclinic.org/",
+    "httpsScore": 1,
+    "cookieScore": 0.6199999999999999,
+    "overallScore": 1.6199999999999999
+  },
+  "63": {
+    "url": "https://it.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "64": {
+    "url": "https://www.indeed.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "65": {
+    "url": "https://www.nih.gov/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "66": {
+    "url": "https://www.rakuten.co.jp/",
+    "httpsScore": 1,
+    "cookieScore": 0.27,
+    "overallScore": 1.27
+  },
+  "67": {
+    "url": "https://www.yelp.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.94,
+    "overallScore": 1.94
+  },
+  "68": {
+    "url": "https://www.bbc.co.uk/",
+    "httpsScore": 1,
+    "cookieScore": 0.18,
+    "overallScore": 1.18
+  },
+  "69": {
+    "url": "https://www.xosodaiphat.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "70": {
+    "url": "https://www.booking.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.71,
+    "overallScore": 1.71
+  },
+  "71": {
+    "url": "https://www.detik.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.18,
+    "overallScore": 1.18
+  },
+  "72": {
+    "url": "https://www.etsy.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "73": {
+    "url": "https://ru.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "74": {
+    "url": "https://www.flipkart.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.9099999999999999,
+    "overallScore": 1.91
+  },
+  "75": {
+    "url": "https://www.espn.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.24,
+    "overallScore": 1.24
+  },
+  "76": {
+    "url": "https://www.walmart.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.73,
+    "overallScore": 1.73
+  },
+  "77": {
+    "url": "https://www.tripadvisor.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.12,
+    "overallScore": 1.12
+  },
+  "78": {
+    "url": "http://www.tripadvisor.com/",
+    "httpsScore": 0,
+    "cookieScore": 0.12,
+    "overallScore": 0.12
+  },
+  "79": {
+    "url": "http://www.uol.com.br/",
+    "httpsScore": 0,
+    "cookieScore": 0.09,
+    "overallScore": 0.09
   }
 }
