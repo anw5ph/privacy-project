@@ -472,5 +472,11 @@
     "httpsScore": 0,
     "cookieScore": 0.09,
     "overallScore": 0.09
+  },
+  "80": {
+    "url": "http://www.max.com/",
+    "httpsScore": 0,
+    "cookieScore": 0.27999999999999997,
+    "overallScore": 0.27999999999999997
   }
 }
