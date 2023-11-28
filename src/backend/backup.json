@@ -478,5 +478,131 @@
     "httpsScore": 0,
     "cookieScore": 0.27999999999999997,
     "overallScore": 0.27999999999999997
+  },
+  "81": {
+    "url": "https://www.kohls.com/",
+    "httpsScore": 1,
+    "cookieScore": 0,
+    "overallScore": 1
+  },
+  "82": {
+    "url": "https://www.indiatimes.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.12,
+    "overallScore": 1.12
+  },
+  "83": {
+    "url": "https://dpboss.services/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "84": {
+    "url": "https://www.amazon.de/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "85": {
+    "url": "https://login.yahoo.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.55,
+    "overallScore": 1.55
+  },
+  "86": {
+    "url": "https://www.webmd.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.37,
+    "overallScore": 1.37
+  },
+  "87": {
+    "url": "https://xoso.com.vn/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "88": {
+    "url": "https://www.ikea.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "89": {
+    "url": "https://pt.wikipedia.org/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "90": {
+    "url": "https://www.healthline.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "91": {
+    "url": "https://www.amazon.co.jp/",
+    "httpsScore": 1,
+    "cookieScore": 0.48,
+    "overallScore": 1.48
+  },
+  "92": {
+    "url": "https://www.canva.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
+  },
+  "93": {
+    "url": "https://www.amazon.co.uk/",
+    "httpsScore": 1,
+    "cookieScore": 0.97,
+    "overallScore": 1.97
+  },
+  "94": {
+    "url": "https://www.britannica.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.21999999999999997,
+    "overallScore": 1.22
+  },
+  "95": {
+    "url": "http://www.babytree.com/baby202208_index/",
+    "httpsScore": 0,
+    "cookieScore": 0.97,
+    "overallScore": 0.97
+  },
+  "96": {
+    "url": "http://socialstudieshelp.com/",
+    "httpsScore": 0,
+    "cookieScore": 1,
+    "overallScore": 1
+  },
+  "97": {
+    "url": "http://targetedattacks.trendmicro.com/",
+    "httpsScore": 0,
+    "cookieScore": 1,
+    "overallScore": 1
+  },
+  "98": {
+    "url": "https://www.hurriyet.com.tr/",
+    "httpsScore": 1,
+    "cookieScore": 0.36,
+    "overallScore": 1.3599999999999999
+  },
+  "99": {
+    "url": "https://www.ebay.com/",
+    "httpsScore": 1,
+    "cookieScore": 0.63,
+    "overallScore": 1.63
+  },
+  "100": {
+    "url": "https://www.speedtest.net/",
+    "httpsScore": 1,
+    "cookieScore": 0.18,
+    "overallScore": 1.18
+  },
+  "101": {
+    "url": "https://www.adobe.com/",
+    "httpsScore": 1,
+    "cookieScore": 1,
+    "overallScore": 2
   }
 }
